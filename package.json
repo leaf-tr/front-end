@@ -11,12 +11,15 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "tailwindcss": "^1.5.1",
     "unstated-next": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "watch:css": "postcss ./src/assets/css/tailwind.css -o ./src/assets/css/index.css -w",
+    "start:react": "react-scripts start",
+    "start": "run-p watch:css start:react",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
