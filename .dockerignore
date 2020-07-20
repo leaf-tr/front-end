@@ -1,0 +1,5 @@
+.git
+.cache
+
+# dependencies
+/node_modules
