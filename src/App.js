@@ -11,23 +11,23 @@ function App() {
 
     <Sidebar />
 
-    <div className="mx-6 w-full flex flex-col h-screen">
+      <div className="mx-6 w-full flex flex-col h-screen">
 
-      <Header />
+        <Header />
 
-      <Switch>
-        {/* 
-            TO-DO
-            if user is authenticated, show dashboard,
-            otherwise show landing page
-        */}
-        <Route exact path="/" component={Dashboard} />
-        {/* <Route path="/reading-library" component={} />
-        <Route path="/add-new-item" component={} /> */}
+        <Switch>
+          {/* 
+              TO-DO
+              if user is authenticated, show dashboard,
+              otherwise show landing page
+          */}
+          <Route exact path="/" component={Dashboard} />
+          {/* <Route path="/reading-library" component={} />
+          <Route path="/add-new-item" component={} /> */}
 
-        
-      </Switch>
-    </div>
+          
+        </Switch>
+      </div>
   </div>
     
   );
