@@ -9,7 +9,8 @@ export default function ReadingLibrary() {
   const [readingItems, setReadingItems] = useState({})
 
   const fetchReadingLibrary = async (userId) => {
-    setReadingItems(await getReadingLibrary(userId))
+    console.log("call getReadingLibrary(userId)")
+    // setReadingItems(await getReadingLibrary(userId))
   };
 
   // fetch api for reading library on component load
