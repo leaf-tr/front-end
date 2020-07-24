@@ -1,4 +1,4 @@
-export const firebaseConfig = {
+export default {
   apiKey: "AIzaSyCjw2rUF3s2Vi9NhL4D_aAjPmx_2mbrigI",
   authDomain: "leaf-tr.firebaseapp.com",
   databaseURL: "https://leaf-tr.firebaseio.com",
