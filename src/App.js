@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
+import ReadingLibrary from './pages/ReadingLibrary';
 
 function App() {
   return (
@@ -22,8 +23,7 @@ function App() {
               otherwise show landing page
           */}
           <Route exact path="/" component={Dashboard} />
-          {/* <Route path="/reading-library" component={} />
-          <Route path="/add-new-item" component={} /> */}
+          <Route exact path="/reading-library" component={ReadingLibrary} />
 
           
         </Switch>
