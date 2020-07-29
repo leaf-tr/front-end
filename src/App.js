@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Landing from './pages/Landing';
 import ReadingLibrary from './pages/ReadingLibrary';
+import SearchBar from './components/SearchBar';
 
 import * as firebase from 'firebase'
 import firebaseConfig from './firebase.config'
