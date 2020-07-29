@@ -10,13 +10,18 @@ import ReadingLibrary from './pages/ReadingLibrary';
 import * as firebase from 'firebase'
 import firebaseConfig from './firebase.config'
 
-firebase.initializeApp(firebaseConfig)
+import { UserContainer } from './provider/containers'
 
-export const AuthContext = createContext(null)
+firebase.initializeApp(firebaseConfig)
 
 function App() {
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const container = UserContainer.useContainer()
+
+  const {
+    loggedIn, setLoggedIn,
+    userData, setUserData
+  } = container
 
   function readSession() {
     const user = window.sessionStorage.getItem(
@@ -24,6 +29,16 @@ function App() {
 		);
     if (user) {
       setLoggedIn(true)
+      const json_data = JSON.parse(user)
+      
+      setUserData({
+        id: json_data.uid,
+        data: {
+          firstName: json_data.displayName.split(" ")[0],
+          lastName: json_data.displayName.split(" ")[1],
+          imgUrl: json_data.photoURL
+        }
+      })
     }
   }
 
@@ -32,8 +47,8 @@ function App() {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
-      { isLoggedIn ? (
+  <>
+      { loggedIn ? (
         <div className="flex" style={{ background: "#f5f6fd" }}>
           <Sidebar />
           <div className="mx-6 w-full flex flex-col h-screen">
@@ -52,8 +67,7 @@ function App() {
           </>
         )
       }
-    </AuthContext.Provider>
-    
+    </>
   );
 }
 
