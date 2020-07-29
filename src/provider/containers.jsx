@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { createContainer } from 'unstated-next';
 
 
-function userAuth() {
+function userData() {
   let [loggedIn, setLoggedIn] = useState(false)
-  // let [userId, setUserId] = useState(null);
+  let [userData, setUserData] = useState({});
 
   return {
     loggedIn, setLoggedIn,
-    userId, setUserId 
+    userData, setUserData 
   }
 }
 
-export const User = createContainer(userAuth)
+export const UserContainer = createContainer(userData)

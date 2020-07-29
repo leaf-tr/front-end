@@ -5,13 +5,17 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+import { UserContainer } from './provider/containers'
+
 import './assets/css/index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <UserContainer.Provider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserContainer.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
