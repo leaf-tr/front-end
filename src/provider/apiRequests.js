@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:5000'
-
+export const API_URL = 'http://localhost:5000/api/'
 
 export const APIPath = {
-  Users: 'api/users',
+  Users: 'users',
   ReadingLibrary: 'reading-library'
 }
 
@@ -20,6 +19,7 @@ export const ContentType = {
 }
 
 export const getReadingLibrary = async (userId) => {
+  // http://localhost:5000/api/ users / :userId / reading-library
   const requestURL = `${API_URL}/${APIPath.Users}/${userId}/${APIPath.ReadingLibrary}`
   try {
     // GET api/users/{id}/reading-library 
@@ -30,6 +30,24 @@ export const getReadingLibrary = async (userId) => {
       return response.data
     }
 
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const authenticateUser = async (userData) => {
+  // http://localhost:5000/api/ users
+  const requestURL = `${API_URL}/${APIPath.Users}/${userData.id}`
+  try {
+    const response = await axios.post(requestURL, {
+      family_name: userData.family_name,
+      given_name: userData.given_name,
+      picture: userData.picture,
+    }, {
+        headers: {
+          'Content-Type': ContentType.JSON
+      }
+    })
   } catch (e) {
     console.log(e)
   }

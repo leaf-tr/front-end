@@ -3,11 +3,14 @@ import React, { useState, useContext } from 'react'
 import * as firebase from 'firebase'
 import { AuthContext } from '../App' 
 
+import { authenticateUser } from '../provider/apiRequests'
+
 import Button from '../components/Button'
 
 export default function Login() {
   
   const [error, setErrors] = useState("")
+  const [userData, setUserData] = useState({})
 
   const Auth = useContext(AuthContext)
 
@@ -22,7 +25,23 @@ export default function Login() {
           .signInWithPopup(provider)
           .then(result => {
             console.log(result)
-            // history.push('/reports')
+            // access API endpoint to authenticate users
+            // POST api/users/:id
+            setUserData(result.additionalUserInfo.profile)
+            console.log(userData)
+            /* 
+
+            family_name = userData.family_name
+            given_name = userData.given_name
+            id = userData.id
+            picture = userData.picture
+
+
+            */
+            // additionalUserInfo.profile.family_name
+            //               .given_name
+            //               .id
+            //               .picture
             Auth.setLoggedIn(true)
           })
           .catch(e => setErrors(e.message))
