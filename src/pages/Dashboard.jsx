@@ -40,7 +40,7 @@ export default function Dashboard() {
         </div>
       </FlexBox>
 
-      <div className="py-8 px-2 rounded-lg bg-white shadow-xl">
+      <div className="py-8 px-2 mx-20 rounded-lg bg-white shadow-xl">
         <CustomBarChart />
         <FlexBox className="items-center justify-center">
           Number of books read each month over the past year

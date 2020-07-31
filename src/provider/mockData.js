@@ -1,10 +1,3 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { XMasonry, XBlock } from 'react-xmasonry'
-
-import { getReadingLibrary } from '../provider/apiRequests'
-import { UserContainer } from '../provider/containers'
-
 const MOCKDATA = [
               {
                  "id":"3447800624",
@@ -1691,42 +1684,3 @@ const MOCKDATA = [
                  "owned":"0"
               }
 ]
-
-export default function ReadingLibrary() {
-
-  const [readingItems, setReadingItems] = useState({})
-  const container = UserContainer.useContainer()
-
-  const data = MOCKDATA
-
-  const fetchReadingLibrary = async (userId) => {
-    // console.log("call getReadingLibrary(userId)")
-    
-    // use mock data for now but connect to the correct endpoint 
-    // setReadingItems(await getReadingLibrary(userId))
-    
-    setReadingItems(data)
-  };
-
-  // fetch api for reading library on component load
-  useEffect(() => {
-    const { userData } = container
-    console.log("USER data", userData)
-    fetchReadingLibrary(userData)
-  }, [])
-
-  return (
-    <div className="mt-10 grid grid-cols-6 gap-4">
-      {
-        Object.values(readingItems).map(item => (
-          // console.log(item, item.image_url,),
-            <Link key={`${item.id}`} to={`/reading-library/${item.book.isbn13}`}>
-              <div className="m-4 rounded overflow-hidden shadow-lg cursor-pointer">
-                <img className="w-48" src={`${item.book.image_url}`} alt="item cover" />
-              </div>
-            </Link>
-        ))
-      }
-    </div>
-  )
-}

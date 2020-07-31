@@ -55,7 +55,9 @@ function App() {
           <div className="mx-6 w-full flex flex-col h-screen">
             <Header />
             <Switch>
-              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/" component={Dashboard}>
+                <Redirect to="/dashboard" />
+              </Route>
               <Route path="/dashboard" component={Dashboard} />
               <Route exact path="/reading-library" component={ReadingLibrary} />
               <Route path="/reading-library/:id" render={({ match }) => (<ItemProfile id={match.params.id} />)} />

@@ -67,7 +67,7 @@ export default function Editor() {
 
 
   return (
-    <div className="mt-10 p-4 bg-white shadow-xl">
+    <div className="mt-10 p-4 rounded-lg bg-white shadow-xl">
       <div id="editor" className="p-4"></div>
     </div>
   )

@@ -33,8 +33,8 @@ export default function Login() {
             setUserData({
               id: data.user.uid,
               data: {
-                firstName: data.additionalUserInfo.profile.family_name,
-                lastName: data.additionalUserInfo.profile.given_name,
+                firstName: data.additionalUserInfo.profile.given_name,
+                lastName: data.additionalUserInfo.profile.family_name,
                 imgUrl: data.additionalUserInfo.profile.picture
               }
             })
