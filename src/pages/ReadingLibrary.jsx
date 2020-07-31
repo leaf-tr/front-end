@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { getReadingLibrary } from '../provider/apiRequests'
-
+import { UserContainer } from '../provider/containers'
 
 export default function ReadingLibrary() {
 
   const [readingItems, setReadingItems] = useState({})
+  const container = UserContainer.useContainer()
 
   const fetchReadingLibrary = async (userId) => {
     console.log("call getReadingLibrary(userId)")
-    // setReadingItems(await getReadingLibrary(userId))
+    setReadingItems(await getReadingLibrary(userId))
   };
 
   // fetch api for reading library on component load
   useEffect(() => {
-    const userId = "dhjfhsdj"
-    fetchReadingLibrary(userId)
+    const { userData } = container
+    console.log("USER data", userData)
+    // fetchReadingLibrary(userData)
   }, [])
 
   console.log(readingItems)

@@ -1,20 +1,20 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 
 import * as firebase from 'firebase'
-import { AuthContext } from '../App' 
 
 import { authenticateUser } from '../provider/apiRequests'
+import { UserContainer } from '../provider/containers'
 
 import Button from '../components/Button'
 
 export default function Login() {
   
   const [error, setErrors] = useState("")
-  const [userData, setUserData] = useState({})
+  const container = UserContainer.useContainer()
 
-  const Auth = useContext(AuthContext)
+  const { setUserData, setLoggedIn } = container
 
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
@@ -24,25 +24,22 @@ export default function Login() {
           .auth()
           .signInWithPopup(provider)
           .then(result => {
-            console.log(result)
-            // access API endpoint to authenticate users
-            // POST api/users/:id
-            setUserData(result.additionalUserInfo.profile)
-            console.log(userData)
-            /* 
+            // access API endpoint to authenticate the user
+            // POST api/users
+            let data = result
+            
+            authenticateUser(data)
 
-            family_name = userData.family_name
-            given_name = userData.given_name
-            id = userData.id
-            picture = userData.picture
+            setUserData({
+              id: data.user.uid,
+              data: {
+                firstName: data.additionalUserInfo.profile.family_name,
+                lastName: data.additionalUserInfo.profile.given_name,
+                imgUrl: data.additionalUserInfo.profile.picture
+              }
+            })
 
-
-            */
-            // additionalUserInfo.profile.family_name
-            //               .given_name
-            //               .id
-            //               .picture
-            Auth.setLoggedIn(true)
+            setLoggedIn(true)
           })
           .catch(e => setErrors(e.message))
       })
