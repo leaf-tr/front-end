@@ -724,6 +724,6 @@ module.exports = {
     container: false,
   },
   plugins: [
-    // require('@tailwindcss/custom-forms'),  // tailwind expansion
+    require('@tailwindcss/custom-forms'),  // tailwind expansion
   ],
 }
