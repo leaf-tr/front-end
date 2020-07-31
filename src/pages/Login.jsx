@@ -28,16 +28,8 @@ export default function Login() {
             // POST api/users
             let data = result
             
-            authenticateUser(data)
-
-            setUserData({
-              id: data.user.uid,
-              data: {
-                firstName: data.additionalUserInfo.profile.family_name,
-                lastName: data.additionalUserInfo.profile.given_name,
-                imgUrl: data.additionalUserInfo.profile.picture
-              }
-            })
+            // let user_db_data = await authenticateUser(data)
+            // setUserData(user_db_data)
 
             setLoggedIn(true)
           })

@@ -48,7 +48,7 @@ function App() {
   }, [])
 
   return (
-  <>
+    <>
       { loggedIn ? (
         <div className="flex" style={{ background: "#f5f6fd" }}>
           <Sidebar />
@@ -70,8 +70,8 @@ function App() {
         )
       }
     </>
-  );
+  )
 }
 
-export default App;
+export default App
 
