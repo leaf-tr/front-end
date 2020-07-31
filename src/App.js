@@ -50,7 +50,7 @@ function App() {
   return (
   <>
       { loggedIn ? (
-        <div className="flex" style={{ background: "#f5f6fd" }}>
+        <div className="flex" style={{ height: '120vh' }}>
           <Sidebar />
           <div className="mx-6 w-full flex flex-col h-screen">
             <Header />
