@@ -25,12 +25,12 @@ const renderCustomizedLabel = ({
 export default function CustomPieChart({ data }) {
 
   return (
-    <PieChart width={400} height={400}>
-      <Legend verticalAlign="bottom" height={36}/>
+    <PieChart width={400} height={300}>
+      <Legend verticalAlign="top" height={36}/>
       <Pie
         data={data}
         cx={200}
-        cy={200}
+        cy={125}
         labelLine={false}
         // label={renderCustomizedLabel}
         outerRadius={80}

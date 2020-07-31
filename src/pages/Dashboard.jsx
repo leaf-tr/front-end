@@ -25,15 +25,26 @@ export default function Dashboard() {
     <div className="mt-10">
       {/* <div>Dashboard</div> */}
 
-      <FlexBox className="mb-32 justify-center items-center">
-        <CustomPieChart data={GenresData} />
-        <CustomPieChart data={FormatsData} />
+      <FlexBox className="mb-20 justify-center items-center">
+        <div className="p-4 mr-8 rounded-lg bg-white shadow-xl">
+          <CustomPieChart data={GenresData} />
+          <FlexBox className="items-center justify-center">
+            Book Genre distribution
+          </FlexBox>
+        </div>
+        <div className="p-4 rounded-lg bg-white shadow-xl">
+          <CustomPieChart data={FormatsData} />
+          <FlexBox className="items-center justify-center">
+            Book Format distribution
+          </FlexBox>
+        </div>
       </FlexBox>
 
-      
-      <CustomBarChart />
-      <div className="ml-20">
-        Number of books read each month over the past year
+      <div className="py-8 px-2 rounded-lg bg-white shadow-xl">
+        <CustomBarChart />
+        <FlexBox className="items-center justify-center">
+          Number of books read each month over the past year
+        </FlexBox>
       </div>
     </div>
   )
