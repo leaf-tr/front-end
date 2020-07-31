@@ -19,7 +19,7 @@ export default function BookData({ data }) {
       {/* genres */}
       { data && data.genres &&
         data.genres.map((genre, id) => (
-          <Paragraph className="mt-2" size="">{genre}</Paragraph>
+          <Paragraph key={id} className="mt-2" size="lg">{genre}</Paragraph>
         ))
       }
       

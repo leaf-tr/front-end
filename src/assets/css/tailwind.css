@@ -18,6 +18,48 @@ code {
     monospace;
 }
 
+
+.editor {
+  @apply bg-white shadow-sm rounded px-12 pt-6 pb-8 mb-4;
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: inherit;
+  margin: 0;
+}
+
+
+.ce-header {
+  @apply py-4 mb-4
+}
+
+/* title */
+.ce-block__content h1 {
+  @apply text-3xl font-semibold text-gray-800;
+}
+
+/* title */
+.ce-block__content h2 {
+  @apply text-2xl font-semibold text-gray-800;
+}
+
+/* subtitle */
+.ce-block__content h3 {
+  @apply text-xl font-semibold text-gray-800;
+}
+
+/* list */
+.ce-block__content ul {
+  @apply list-disc text-xl text-gray-800 ml-8 mb-4;
+}
+
+/* regular paragraph */
+.ce-paragraph {
+  @apply text-lg text-gray-800 mb-4;
+}
+
+
 /* purgecss end ignore */
 
 @import 'tailwindcss/utilities';

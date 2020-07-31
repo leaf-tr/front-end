@@ -8,7 +8,7 @@ export default function TextBlock({ accent, className, textElements, size, weigh
     <div className={`mt-4 ${className}`}>
       {
         textElements.map((text, id) => (
-          <Paragraph accent={accent} size={size} weight={weight}>
+          <Paragraph key={id} accent={accent} size={size} weight={weight}>
           <span>
             {text.label}
           </span>
