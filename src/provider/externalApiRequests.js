@@ -1,8 +1,16 @@
 import axios from 'axios'
 import parser from 'fast-xml-parser'
 
+const GOODREADS = {
+  BaseURL: 'https://www.goodreads.com',
+  SearchURL: 'search/index.xml',
+  DevKey: process.env.GOODREADS_KEY,
+}
 
-
+const GOOGLEBOOKS = {
+  BaseURL: 'https://www.googleapis.com/books/v1',
+  DevKey: '',
+}
 
 export const getBookDataByIsbn = async (isbn) => {
   console.log(parser)
