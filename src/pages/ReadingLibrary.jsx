@@ -33,6 +33,10 @@ export default function ReadingLibrary() {
     fetchReadingLibrary(userData.id)
   }, [userData])
 
+
+  // add a button to manually sync Goodreads API
+  // send a GET to api/users/{id}/sync/{goodreads}
+  console.log(readingItems)
   return (
     <PageWrapper className="mt-10">
       <div className="grid grid-cols-6 gap-4">
