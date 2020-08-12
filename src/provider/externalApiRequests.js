@@ -1,13 +1,18 @@
 import axios from 'axios'
 import parser from 'fast-xml-parser'
 
+const GOODREADS = {
+  BaseURL: 'https://www.goodreads.com',
+  SearchURL: 'search/index.xml',
+  DevKey: process.env.REACT_APP_GOODREADS_KEY,
+}
 
-
+const GOOGLEBOOKS = {
+  BaseURL: 'https://www.googleapis.com/books/v1',
+  DevKey: process.env.REACT_APP_GOOGLEBOOKS_KEY,
+}
 
 export const getBookDataByIsbn = async (isbn) => {
-  console.log(parser)
-  console.log("id", isbn)
-  console.log("key", process.env)
   // response.data.items[0].id
   const requestURL = `https://cors-anywhere.herokuapp.com/${GOOGLEBOOKS.BaseURL}/volumes?q=isbn:${isbn}&key=${GOOGLEBOOKS.DevKey}`
   
@@ -33,29 +38,9 @@ export const getBookDataByIsbn = async (isbn) => {
     }
 
     console.log("JSON", bookData)
-    // let jsonResponse = parser.parse(xmlResponse.data)
-    // let parsedData = jsonResponse.GoodreadsResponse.search.results
     return bookData
 
   } catch (e) {
     console.log(e)
   }
-
-  // const requestURL = `https://cors-anywhere.herokuapp.com/${GOODREADS.BaseURL}/${GOODREADS.SearchURL}?q=${isbn}&key=${GOODREADS.DevKey}`
-  
-  // try {
-  //   const xmlResponse = await axios.get(requestURL, {
-  //     headers: {
-  //       'Content-type': 'application/json'
-  //     }
-  //   })
-
-  //   console.log("XML", xmlResponse)
-  //   let jsonResponse = parser.parse(xmlResponse.data)
-  //   let parsedData = jsonResponse.GoodreadsResponse.search.results
-  //   return parsedData
-
-  // } catch (e) {
-  //   console.log(e)
-  // }
 }

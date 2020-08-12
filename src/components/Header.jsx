@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function Header() {
+import { UserContainer } from '../provider/containers'
+
+export default function Header({ user }) {
+  
+  const container = UserContainer.useContainer()
+
+  const { userData, setUserData} = container
+
   return (
     <>
       {/* <!-- Desktop Header --> */}
@@ -8,9 +15,9 @@ export default function Header() {
         <div className="w-1/2"></div>
         <div className="relative w-1/2 flex justify-end items-center">
           <button className="relative z-10 w-8 h-8 rounded-full overflow-hidden">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="img profile" />
+            <img src={userData.data.imgUrl} alt="img profile" />
           </button>
-          <span className="ml-4">BartleBy547</span>
+          <span className="ml-2">{userData.data.firstName}</span>
           {/* <div className="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
             <a href="#" className="block px-4 py-2 account-link hover:text-primary">Account</a>
             <a href="#" className="block px-4 py-2 account-link hover:text-primary">Support</a>
