@@ -24,16 +24,38 @@ export const getBookDataByIsbn = async (isbn) => {
     })
     
     const volumeInfo = response.data.items[0].volumeInfo
+    let title = ""
+    let authors = ""
+    let categories = ""
+    let imgUrl = ""
+    let publishedDate = ""
+    let publisher = ""
+    let description = ""
+    let pageCount = ""
+
+    try {
+      title = volumeInfo.title
+      authors = volumeInfo.authors
+      categories = volumeInfo.categories
+      imgUrl = volumeInfo.imageLinks.smallThumbnail
+      publishedDate = volumeInfo.publishedDate
+      publisher = volumeInfo.publisher
+      description = volumeInfo.description
+      pageCount = volumeInfo.pageCount
+      isbn = isbn
+    } catch (e) {
+      console.log("API did not return all of the data")
+    }
 
     const bookData = {
-      "title": volumeInfo.title,
-      "authors": volumeInfo.authors,
-      "genres": volumeInfo.categories,
-      "imgUrl": volumeInfo.imageLinks.smallThumbnail,
-      "publishedDate": volumeInfo.publishedDate,
-      "publisher": volumeInfo.publisher,
-      "description": volumeInfo.description,
-      "pageCount": volumeInfo.pageCount,
+      "title": title,
+      "authors": authors,
+      "genres": categories,
+      "imgUrl": imgUrl,
+      "publishedDate": publishedDate,
+      "publisher": publisher,
+      "description": description,
+      "pageCount": pageCount,
       "isbn": isbn,
     }
 

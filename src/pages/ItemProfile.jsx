@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import BookData from '../components/ItemsProfiles/BookData'
 // future: import JournalData from '../components/ItemsProfiles/JournalData'
 
-import DropDown from '../components/DropDown'
+import DropDown from '../components/Dropdown'
 import Editor from '../components/Editor'
 import FlexBox from '../components/FlexBox'
 
