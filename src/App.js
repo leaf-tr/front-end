@@ -48,7 +48,7 @@ function App() {
   }, [])
 
   return (
-  <>
+    <>
       { loggedIn ? (
         <div className="flex" style={{ height: '120vh' }}>
           <Sidebar />
@@ -72,8 +72,8 @@ function App() {
         )
       }
     </>
-  );
+  )
 }
 
-export default App;
+export default App
 

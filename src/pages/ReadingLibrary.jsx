@@ -1694,7 +1694,7 @@ const MOCKDATA = [
 
 export default function ReadingLibrary() {
 
-  const [readingItems, setReadingItems] = useState({})
+  let [readingItems, setReadingItems] = useState([])
   const container = UserContainer.useContainer()
 
   const data = MOCKDATA
@@ -1706,6 +1706,8 @@ export default function ReadingLibrary() {
     // setReadingItems(await getReadingLibrary(userId))
     
     setReadingItems(data)
+    console.log("call getReadingLibrary(userId)")
+    setReadingItems = await getReadingLibrary(userId)
   };
 
   // fetch api for reading library on component load
@@ -1715,16 +1717,19 @@ export default function ReadingLibrary() {
     fetchReadingLibrary(userData)
   }, [])
 
+
+  // add a button to manually sync Goodreads API
+  // send a GET to api/users/{id}/sync/{goodreads}
+  console.log(readingItems)
   return (
-    <div className="mt-10 grid grid-cols-6 gap-4">
-      {
-        Object.values(readingItems).map(item => (
-          // console.log(item, item.image_url,),
-            <Link key={`${item.id}`} to={`/reading-library/${item.book.isbn13}`}>
-              <div className="m-4 rounded overflow-hidden shadow-lg cursor-pointer">
-                <img className="w-48" src={`${item.book.image_url}`} alt="item cover" />
-              </div>
-            </Link>
+    <div className="flex m-6">
+      { readingItems.length > 0 &&
+        Object.values(readingItems).map((item, id) => (
+          <Link key={`${item.isbn}`} to={`item/${item.isbn}`}>
+            <div className="m-4 max-w-sm rounded overflow-hidden shadow-lg cursor-pointer">
+              <img className="w-48" src={`${item.imgUrl}`} alt="item cover" />
+            </div>
+          </Link>
         ))
       }
     </div>
