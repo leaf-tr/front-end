@@ -1,8 +1,6 @@
 import React from 'react'
 
-
 import FlexBox from '../components/FlexBox'
-
 import PageWrapper from '../components/PageWrapper'
 import CustomBarChart from '../components/Charts/CustomBarChart'
 import CustomPieChart from '../components/Charts/CustomPieChart'

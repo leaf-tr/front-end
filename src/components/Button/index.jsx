@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { ButtonSize } from './style';
 
-export default function Button({ children, color, onClick, outline, size = 'md' }) {
+export default function Button({ children, className = '', color, onClick, outline, size = 'md' }) {
 
   let btnColor = ""
 
@@ -14,7 +14,7 @@ export default function Button({ children, color, onClick, outline, size = 'md' 
     btnColor = `text-white bg-${color}-500 focus:outline-none hover:bg-${color}-600`
   }
 
-  const btnClass = classNames('font-semibold items-center flex justify-center items-center rounded-lg ', btnColor, {
+  const btnClass = classNames('font-semibold items-center flex justify-center items-center rounded-lg ', btnColor, className, {
     [`${ButtonSize.sm}`]: (size === 'sm'),
     [`${ButtonSize.md}`]: (size === 'md'),
     [`${ButtonSize.lg}`]: (size === 'lg'),
