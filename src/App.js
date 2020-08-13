@@ -54,24 +54,22 @@ function App() {
   return (
     <ToastProvider>
       { loggedIn ? (
-        // <UserContainer.Provider>
-        <OnboardingContainer.Provider>
-          <div className="flex" style={{ height: '120vh' }}>
-            <Sidebar />
-            <div className="mx-6 w-full flex flex-col h-screen">
-              <Header />
-              <Switch>
-                <Route exact path="/" component={Dashboard}>
-                  <Redirect to="/dashboard" />
-                </Route>
-                <Route path="/dashboard" component={Dashboard} />
-                <Route exact path="/reading-library" component={ReadingLibrary} />
-                <Route path="/reading-library/:id" render={({ match }) => (<ItemProfile id={match.params.id} />)} />
-              </Switch>
+          <OnboardingContainer.Provider>
+            <div className="flex" style={{ height: '120vh' }}>
+              <Sidebar />
+              <div className="mx-6 w-full flex flex-col h-screen">
+                <Header />
+                <Switch>
+                  <Route exact path="/" component={Dashboard}>
+                    <Redirect to="/dashboard" />
+                  </Route>
+                  <Route path="/dashboard" component={Dashboard} />
+                  <Route exact path="/reading-library" component={ReadingLibrary} />
+                  <Route path="/reading-library/:id" render={({ match }) => (<ItemProfile id={match.params.id} />)} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </OnboardingContainer.Provider>
-        // </UserContainer.Provider>
+          </OnboardingContainer.Provider>
         ) : (
           <>
             <Route exact path="/" component={Landing} />

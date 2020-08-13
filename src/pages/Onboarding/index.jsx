@@ -37,26 +37,26 @@ import One from './Steps/One'
 
 */
 
-const handleNextStep = async (service, onboardingContainer, stepContents) => {
+// const handleNextStep = async (service, onboardingContainer, stepContents) => {
 
-  const {
-    initOnboarding, setInitOnboarding,
-    onboardingStep, setOnboardingStep,
-  } = onboardingContainer
+//   const {
+//     initOnboarding, setInitOnboarding,
+//     onboardingStep, setOnboardingStep,
+//   } = onboardingContainer
 
-  // increment step
+//   // increment step
 
-  const OAuthRedirect = await authorizeProvider(service)
-  if (OAuthRedirect === undefined) {
+//   const OAuthRedirect = await authorizeProvider(service)
+//   if (OAuthRedirect === undefined) {
 
-  }
-  try {
-    let OAuthRedirectUrl = new URL(OAuthRedirect)
-  } catch (e) {
-    console.log("invalid url", OAuthRedirect)
-  }
-  // var win = window.open(OAuthRedirectUrl, '_blank');
-}
+//   }
+//   try {
+//     let OAuthRedirectUrl = new URL(OAuthRedirect)
+//   } catch (e) {
+//     console.log("invalid url", OAuthRedirect)
+//   }
+//   // var win = window.open(OAuthRedirectUrl, '_blank');
+// }
 
 export default function Onboarding() {
   const { addToast } = useToasts()
@@ -67,44 +67,54 @@ export default function Onboarding() {
   const {
     initOnboarding, setInitOnboarding,
     onboardingStep, setOnboardingStep,
+    incrementStep, 
   } = onboardingContainer
 
-  useEffect(() => {
-    if (onboardingStep === 2) {
-      if (authResult === "authorizedProvider=1") {
-        addToast('Authorized Successfully', { appearance: 'success' })
-      }
-      else {
-        addToast('You need to authorize your chosen service', { appearance: 'error' })
-        console.log()
-      }
+  // TO DO: pull the service value from the state
+  const service = "goodreads"
+  const [stepContents, setStepContents] = useState(<></>)
+
+  const configureStepContents = async (onboardingStep) => {
+    // different behavior depending on step number
+    switch (onboardingStep) {
+      // initialize onboarding
+      // picking a service or adding an item manually
+      case 1:
+        setStepContents(<One />)
+        break
+      case 2:
+        addToast('You will be re-directed in a moment', { appearance: 'success' })
+        const OAuthRedirect = await authorizeProvider(service)
+        try {
+          let OAuthRedirectUrl = new URL(OAuthRedirect)
+        } catch (e) {
+          console.log("invalid url", OAuthRedirect)
+        }
+        if (authResult === "authorizedProvider=1") {
+          addToast('Authorized Successfully', { appearance: 'success' })
+        } else {
+          addToast('There was an error, please try again', { appearance: 'error' })
+        }
+        break
+      default:
+        return ""
     }
-  }, [onboardingStep])
-
-
-  let stepContents = <></>
-  // different behavior depending on step number
-  switch (onboardingStep) {
-    // initialize onboarding
-    case 0:
-      setOnboardingStep(1)
-      break
-    case 1:
-      stepContents = <One />
-      break
-    case 2:
-      break
-    default:
-      return ""
   }
-
-
-  console.log("PARAM", authResult)
   
-
-  // const imgSrc= "https://image.freepik.com/free-vector/online-courses-concept_23-2148514212.jpg"
-  // const imgSrc2 = "https://image.freepik.com/free-vector/group-people-reading-borrowing-books_53876-43122.jpg"
-  // const imgSrc3 = "https://image.freepik.com/free-vector/happy-sporty-readers-among-books_74855-6518.jpg"
+  useEffect(() => {
+    console.log("STEP", onboardingStep)
+    
+    configureStepContents(onboardingStep)
+    // if (onboardingStep === 2) {
+    //   if (authResult === "authorizedProvider=1") {
+    //     addToast('Authorized Successfully', { appearance: 'success' })
+    //   }
+    //   else {
+    //     addToast('You need to authorize your chosen service', { appearance: 'error' })
+    //     console.log()
+    //   }
+    // }
+  }, [onboardingStep])
 
 
   return (
@@ -114,7 +124,7 @@ export default function Onboarding() {
           <div className="self-end">
             <Button
               color="green"
-              onClick={() => handleNextStep("goodreads", onboardingContainer, stepContents)}
+              onClick={() => incrementStep()}
             >
               Next
             </Button>
